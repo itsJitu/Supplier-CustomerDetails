@@ -51,12 +51,12 @@ function AddSupplier() {
             <div>
               <span>Supplier Name</span>
               <br />
-              <input type="text" ></input>
+              <input type="text"></input>
             </div>
             <div>
               <span>Address</span>
               <br />
-              <input type="text" style={{width: "45%"}}></input>
+              <input type="text"></input>
             </div>
           </div>
         </div>

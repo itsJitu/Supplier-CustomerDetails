@@ -1,5 +1,5 @@
 .main {
-    padding: 10px 10px;
+    padding: 10px 20px;
     background-color: rgb(220, 216, 210);
 }
 
@@ -27,7 +27,7 @@
 
 .arrow-addsupplier {
     margin-top: 15px;
-    padding: 10px;
+    padding: 15px;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -35,12 +35,19 @@
 
 .supplier-details {
     background-color: white;
-    padding: 5px 15px;
+    padding: 10px 15px;
 }
 
 .name-address {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.name-address > div {
+  flex: 1;
+}
+
+.name-address input {
+  width: 100%;
+  box-sizing: border-box;
 }
