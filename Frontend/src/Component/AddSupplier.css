@@ -1,0 +1,46 @@
+.main {
+    padding: 10px 10px;
+    background-color: rgb(220, 216, 210);
+}
+
+.supplier {
+    font-size: xx-large;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-bell{
+    width: 250px;
+    padding: 5px;
+    display: flex;
+}
+
+.search {
+    border: none;
+    outline: none;
+    width: 100%
+}
+
+.arrow-addsupplier {
+    margin-top: 15px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.supplier-details {
+    background-color: white;
+    padding: 5px 15px;
+}
+
+.name-address {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+}

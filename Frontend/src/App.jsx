@@ -1,28 +1,22 @@
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import './App.css'
 
 import Supplier from "./Component/Supplier";
-import SupplierList from "./Component/SupplierList";
 import First from "./Component/First";
-import AddCustomer from "./Component/AddCustomer";
-import CustomerList from "./Component/CustomerList";
 import AddSupplier from "./Component/AddSupplier";
-import './App.css'
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import SupplierList from "./Component/SupplierList";
+import CustomerList from "./Component/CustomerList";
+import AddCustomer from "./Component/AddCustomer";
 
 const router = createBrowserRouter([
   {
-    path:'/',
+    path: "/",
     element: <First />,
 
     children: [
       {
         index: true,
-        element:<AddCustomer />
-      },
-      {
-        path: "/CustomerList",
-        element: <CustomerList />
+        element: <Supplier />,
       },
       {
         path: "/AddSupplier",
@@ -30,19 +24,23 @@ const router = createBrowserRouter([
       },
       {
         path: "/SupplierList",
-        element: <SupplierList />
+        element: <SupplierList />,
       },
       {
-        path: "/Supplier",
-        element: <Supplier />
-      }
+        path: "/AddCustomer",
+        element: <AddCustomer />,
+      },
+      {
+        path: "/CustomerList",
+        element: <CustomerList />
+      },
     ],
   },
 ]);
 
 function App() {
 
-  return <RouterProvider router={ router} />;
+  return <RouterProvider router={router} />
 }
 
-export default App;
+export default App
