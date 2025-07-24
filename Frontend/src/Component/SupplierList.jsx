@@ -38,7 +38,8 @@ function SupplierList() {
         </div>
 
         {/* table*/}
-        <table className="supplier-table">
+        <div>
+          <table className="supplier-table">
           <thead>
             <tr>
               <th>S.no</th>
@@ -69,6 +70,8 @@ function SupplierList() {
             </tr>
           </tbody>
         </table>
+        </div>
+        
       </div>
     </div>
   );
