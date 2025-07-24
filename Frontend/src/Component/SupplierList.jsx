@@ -2,6 +2,7 @@ import React from "react";
 import "./SupplierList.css";
 import { IoManSharp } from "react-icons/io5";
 import { FiDownload } from "react-icons/fi";
+import { CiSearch } from "react-icons/ci";
 
 function SupplierList() {
   return (
@@ -17,10 +18,21 @@ function SupplierList() {
               <span>View and manage your Suppliers</span>
             </div>
           </div>
-
-          <div>
-            <button className="download-btn"> <FiDownload />Download csv</button>
+ 
+          <div className="list-btn">
+            <button className="download-btn"> <FiDownload /> <span>Download csv </span></button>
+            <button className="add-btn"> + Add</button>
           </div>
+        </div>
+
+        <div style={{display: "flex", alignItems: "center"}}>
+          <div className="list-search">
+          <input type="search" placeholder="Search by name" />
+        </div>
+        <div>
+          <CiSearch />
+        </div>
+        
         </div>
       </div>
     </div>
