@@ -33,14 +33,27 @@
     gap: 15px;
 }
 
+.details-bar{
+    margin-top: 15px;
+    background-color: #f5f7fa; /* Light gray-blue, adjust as needed */
+    padding: 10px;
+    border-radius: 6px;
+}
+
 .supplier-details {
     background-color: white;
     padding: 10px 15px;
 }
 
+
+
 .name-address {
   display: flex;
   gap: 20px;
+}
+
+.supplier-input {
+    margin-bottom: 5px;
 }
 
 .name-address > div {
@@ -50,4 +63,11 @@
 .name-address input {
   width: 100%;
   box-sizing: border-box;
+}
+
+/* Add spacing between label and input */
+.supplier-input span,
+.name-address span {
+  display: inline-block;
+  margin-bottom: 5px;
 }

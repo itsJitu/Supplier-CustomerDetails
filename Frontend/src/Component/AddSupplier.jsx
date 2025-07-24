@@ -45,9 +45,23 @@ function AddSupplier() {
       <div className="supplier-details">
         <span>Basic details</span>
 
-        <div>
-          {/* Supplier Name & Address */}
+        <div className="details-bar">
+          {/* Supplier Name & Address - First Set */}
           <div className="name-address">
+            <div className="supplier-input">
+              <span>Supplier Name</span>
+              <br />
+              <input type="text"></input>
+            </div>
+            <div>
+              <span>Address</span>
+              <br />
+              <input type="text"></input>
+            </div>
+          </div>
+
+          {/* Supplier Name & Address - Second Set */}
+          <div className="name-address" style={{ marginTop: "15px" }}>
             <div>
               <span>Supplier Name</span>
               <br />
