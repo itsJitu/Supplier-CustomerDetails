@@ -139,7 +139,17 @@ function AddSupplier() {
               <input type="email" />
             </div>
         </div>
+        <hr />
+
+        {/* buttons cancel & submit */}
+
+        <div className="buttons">
+          <button style={{ backgroundColor: "white", padding: "5px", borderRadius: "4px", border: "2px solid #f5f7fa"}}>Cancel</button>
+          <button style={{backgroundColor: "#077aff", color: "white", border: "none", padding: "5px", borderRadius: "4px"}}>Submit</button>
+        </div>
       </div>
+
+      
     </div> //main div
   );
 }
