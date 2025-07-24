@@ -104,33 +104,34 @@ function AddSupplier() {
 
           {/* Total Inventory, Lorem & Lorem */}
            <div className="name-address" style={{ marginTop: "15px" }}>
-            <div>
+            <div className="total-inventory-container">
               <span>Total Inventory</span>
               <br />
               <input type="text" className="total-inventory-input" style={{backgroundColor: "#bbc4d9ff"}}></input>
             </div>
-            <div>
-              <span>Lorem</span>
-              <br />
-              <input type="text" ></input>
-            </div>
-            <div>
-              <span>Lorem</span>
-              <br />
-              <input type="text"></input>
+            <div className="lorem-wrapper">
+              <div>
+                <span>Lorem</span>
+                <br />
+                <input type="text" ></input>
+              </div>
+              <div>
+                <span>Lorem</span>
+                <br />
+                <input type="text"></input>
+              </div>
             </div>
           </div>
 
           {/* Date */}
-            <div>
+            <div className="full-width-field">
               <span>Date</span>
               <br />
               <input type="date"></input>
             </div>
 
             {/* Email id */}
-
-            <div>
+            <div className="full-width-field">
               <span>
                 Email id
               </span>

@@ -77,3 +77,35 @@
   display: inline-block;
   margin-bottom: 5px;
 }
+
+.total-inventory-container {
+  flex: 1;
+}
+
+.lorem-wrapper {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+}
+
+.lorem-wrapper > div {
+  flex: 1;
+}
+
+.full-width-field {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.full-width-field input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="email"],
+input[type="search"] {
+  border: none;
+  outline: none;
+}
