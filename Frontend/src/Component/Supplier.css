@@ -1,0 +1,128 @@
+.supplier-page {
+  padding: 20px;
+}
+
+.container {
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.text-block h3 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #555;
+  font-weight: 500;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.list-search {
+  display: flex;
+  align-items: center;
+  padding: 4px 0px;
+  border-radius: 6px;
+  background-color: transparent;
+  width: 250px;
+  height: 32px;
+  background-color: white;
+}
+
+.list-search input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  padding: 4px;
+  font-size: 14px;
+}
+
+.bell-wrapper {
+  background-color: white;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.image-container {
+  position: relative;
+  height: 200px; /* fixed or use percentage with known parent height */
+  overflow: hidden;
+}
+
+
+.back-arrow-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: red;
+  border-radius: 8px;
+}
+
+
+.full-width-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.img-text-button{
+    display: flex;
+    justify-content: space-between;
+}
+
+.zomato-img-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.zomato{
+    height: 50px;
+}
+
+
+.zomato-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.zomato-text p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.zomato-text span {
+  margin: 0;
+  font-size: 14px;
+  color: gray;
+}
