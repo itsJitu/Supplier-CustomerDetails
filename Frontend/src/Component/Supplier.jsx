@@ -63,7 +63,124 @@ function Supplier() {
             </button>
           </div>
         </div>
+
+        {/* Details & active order & products */}
+
+        <div className="three-button">
+          <button className="details">Details</button>
+          <button className="active">Active Orders</button>
+          <button className="products">Products</button>
+        </div>
+
+        {/* details Tab */}
         
+         <div className="supplier-details">
+        <span>Basic details</span>
+
+        <div className="details-bar">
+          {/* Supplier Name & Address - First Set */}
+          <div className="name-address">
+            <div className="supplier-input">
+              <span>Supplier Name</span>
+              <br />
+              <input type="text"></input>
+            </div>
+            <div>
+              <span>Address</span>
+              <br />
+              <input type="text"></input>
+            </div>
+          </div>
+
+          {/* Supplier Name & Address - Second Set */}
+          <div className="name-address" style={{ marginTop: "15px" }}>
+            <div>
+              <span>Contact</span>
+              <br />
+              <input type="text"></input>
+            </div>
+            <div>
+              <span>Current Stock</span>
+              <br />
+              <input type="text"></input>
+            </div>
+          </div>
+
+          {/* Stock in transit & Available stock */}
+          <div className="name-address" style={{ marginTop: "15px" }}>
+            <div>
+              <span>Stock in transit</span>
+              <br />
+              <input type="text" style={{backgroundColor: "#bbc4d9ff"}}></input>
+            </div>
+            <div>
+              <span>Available stock</span>
+              <br />
+              <input type="text" style={{backgroundColor: "#bbc4d9ff"}}></input>
+            </div>
+          </div>
+
+          {/* Category & unit Price */}
+           <div className="name-address" style={{ marginTop: "15px" }}>
+            <div>
+              <span>Category</span>
+              <br />
+              <input type="text"></input>
+            </div>
+            <div>
+              <span>Unit Price</span>
+              <br />
+              <input type="text"></input>
+            </div>
+          </div>
+
+          {/* Total Inventory, Lorem & Lorem */}
+           <div className="name-address" style={{ marginTop: "15px" }}>
+            <div className="total-inventory-container">
+              <span>Lorem</span>
+              <br />
+              <input type="text" className="total-inventory-input"></input>
+            </div>
+            <div className="lorem-wrapper">
+              <div>
+                <span>Upload a photo</span>
+                <br />
+                <input type="text" ></input>
+              </div>
+              <div>
+                <span>Company Logo</span>
+                <br />
+                <input type="text"></input>
+              </div>
+            </div>
+          </div>
+
+          {/* Date */}
+            <div className="full-width-field">
+              <span>Date</span>
+              <br />
+              <input type="date"></input>
+            </div>
+
+            {/* Email id 
+            <div className="full-width-field">
+              <span>
+                Email id
+              </span>
+              <br />
+              <input type="email" />
+            </div>
+            */}
+        </div>
+        <hr />
+
+        {/* buttons cancel & submit */}
+
+        <div className="buttons">
+          <button style={{ backgroundColor: "white", padding: "5px", borderRadius: "4px", border: "2px solid #f5f7fa"}}>Cancel</button>
+          <button style={{backgroundColor: "#077aff", color: "white", border: "none", padding: "5px", borderRadius: "4px"}}>Submit</button>
+        </div>
+      </div>
       </div>
     </div>
   );

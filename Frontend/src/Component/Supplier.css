@@ -126,3 +126,44 @@
   font-size: 14px;
   color: gray;
 }
+
+.contact-quote {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact{
+  border: 1px solid;
+  padding: 5px 5px;
+}
+
+.quote {
+  border: none;
+  background-color: rgb(97, 156, 8);
+  padding: 5px 5px;
+  color: white;
+}
+
+.three-button{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 250px;
+  background-color: white;
+}
+
+.details{
+  border: none;
+  padding: 5px 5px;
+}
+
+.active {
+  border: none;
+  padding: 5px 5px;
+}
+
+.products {
+  border: none;
+  padding: 5px 5px;
+}

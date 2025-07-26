@@ -4,6 +4,7 @@ import { IoManSharp } from "react-icons/io5";
 import { FiDownload } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
 import { IoFilter } from "react-icons/io5";
+import { Link } from 'react-router-dom'
 
 
 const supplierData = [
@@ -36,6 +37,33 @@ const supplierData = [
   },
 ];
 
+const downloadCSV = () => {
+  const headers = ["S.no", "Party/Supplier", "Contact Number", "Product", "Product Category", "Unit Price", "Supplier/Manufacturer"];
+  
+  const rows = supplierData.map((row, index) => [
+    index + 1,
+    row.name,
+    row.contact,
+    row.product,
+    row.category,
+    row.price,
+    row.type
+  ]);
+
+  let csvContent = "data:text/csv;charset=utf-8,"
+    + headers.join(",") + "\n"
+    + rows.map(e => e.join(",")).join("\n");
+
+  const encodedUri = encodeURI(csvContent);
+  const link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", "suppliers.csv");
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
+
 
 function SupplierList() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -64,8 +92,8 @@ function SupplierList() {
           </div>
 
           <div className="list-btn">
-            <button className="download-btn"> <FiDownload /> <span>Download csv </span></button>
-            <button className="add-btn"> + Add</button>
+            <button className="download-btn" onClick={downloadCSV}><FiDownload /> <span>Download csv </span></button>
+            <Link to="/AddSuplier" className="add-btn">+ Add</Link>  
           </div>
         </div>
 
