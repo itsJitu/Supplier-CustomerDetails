@@ -6,7 +6,6 @@ import { CiSearch } from "react-icons/ci";
 import { IoFilter } from "react-icons/io5";
 import { Link } from 'react-router-dom'
 
-
 const supplierData = [
   {
     id: 1,
@@ -38,32 +37,40 @@ const supplierData = [
 ];
 
 const downloadCSV = () => {
-  const headers = ["S.no", "Party/Supplier", "Contact Number", "Product", "Product Category", "Unit Price", "Supplier/Manufacturer"];
-  
-  const rows = supplierData.map((row, index) => [
-    index + 1,
-    row.name,
-    row.contact,
-    row.product,
-    row.category,
-    row.price,
-    row.type
-  ]);
+  try {
+    const headers = [
+      "S.no",
+      "Party/Supplier",
+      "Contact Number",
+      "Product",
+      "Product Category",
+      "Unit Price",
+      "Supplier/Manufacturer"
+    ];
 
-  let csvContent = "data:text/csv;charset=utf-8,"
-    + headers.join(",") + "\n"
-    + rows.map(e => e.join(",")).join("\n");
+    const rows = supplierData.map((row, index) => [
+      index + 1,
+      `"${row.name.replace(/"/g, '""')}"`,
+      row.contact,
+      `"${row.product.replace(/"/g, '""')}"`,
+      `"${row.category.replace(/"/g, '""')}"`,
+      `"${row.price.replace(/"/g, '""')}"`,
+      `"${row.type.replace(/"/g, '""')}"`
+    ]);
 
-  const encodedUri = encodeURI(csvContent);
-  const link = document.createElement("a");
-  link.setAttribute("href", encodedUri);
-  link.setAttribute("download", "suppliers.csv");
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+    let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\n" + rows.map(e => e.join(",")).join("\n");
+    
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "suppliers.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch (error) {
+    console.error("Download failed:", error);
+  }
 };
-
-
 
 function SupplierList() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -92,8 +99,8 @@ function SupplierList() {
           </div>
 
           <div className="list-btn">
-            <button className="download-btn" onClick={downloadCSV}><FiDownload /> <span>Download csv </span></button>
-            <Link to="/AddSuplier" className="add-btn">+ Add</Link>  
+            <button className="download-btn" onClick={downloadCSV}><FiDownload /> <span>Download CSV </span></button>
+            <Link to="/AddSupplier" className="add-btn">+ Add</Link>  
           </div>
         </div>
 
