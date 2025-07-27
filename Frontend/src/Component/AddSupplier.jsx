@@ -4,6 +4,38 @@ import { CiBellOn } from "react-icons/ci";
 import { FaArrowLeft } from "react-icons/fa";
 
 function AddSupplier() {
+  const backend_url = import.meta.env.VITE_BACKEND_URL;
+
+  const [toast, setToast] = useState('');
+  const handleSubmit = async(e) => {
+  e.preventDefault();
+  setToast();
+  try {
+    const res = await fetch(`${backend_url}/api/Suppliers/add`,{
+    method: "POST",
+    header: {'Content_Type':'application/json'},
+    body: JSON.stringify({supplier:})
+  });
+
+   const data = await res.json();
+      if(res.ok){
+        setToast(data.alert);
+        setMessage('');
+      }else{
+        setToast(data.alert);
+      }
+    }
+    catch(error){
+      setToast(error.message);
+    }
+  }
+//   const fetchUsers = () => {
+//     fetch(`${backend_url}$/api/Suppliers/add=${encodedURIComponent()}`)
+//     .then(res => res.json())
+//     .then(data => { setAllUUsers(Array.isArray(data) ? data : data.uers ||)})
+//   }
+// };
+
   return (
     <div className="main">
       {/* Header & search & bell*/}
@@ -144,7 +176,7 @@ function AddSupplier() {
         {/* buttons cancel & submit */}
 
         <div className="buttons">
-          <button style={{ backgroundColor: "white", padding: "5px", borderRadius: "4px", border: "2px solid #f5f7fa"}}>Cancel</button>
+          <button type="submit" style={{ backgroundColor: "white", padding: "5px", borderRadius: "4px", border: "2px solid #f5f7fa"}}>Cancel</button>
           <button style={{backgroundColor: "#077aff", color: "white", border: "none", padding: "5px", borderRadius: "4px"}}>Submit</button>
         </div>
       </div>

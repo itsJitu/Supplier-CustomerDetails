@@ -1,11 +1,36 @@
 const express = require("express");
 
-const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+
+// const dotenv = require("dotenv");
 
 const app = express();
 
-dotenv.config();
+require('dotenv/config');
 
-const PortNo = process.env.PORT_NO || 8080;
+const PortNO = process.env.PORT_NO || 8080;
+const MONGOOSE_URL = process.env.MONGOOSE_URL;
 
-app.listen(PortNo, () => console.log('server is up & running at $(portNO)'));
+const FRONTEND_URL = process.env.FRONTEND_URL;
+
+const cors = require('cors');
+app.use(cors());
+const corsOption = {
+    origin: FRONTEND_URL,
+    methods:["GET","POST"],
+};
+app.use(cors(corsOption));
+
+mongoose.connect(MONGOOSE_URL)
+.then(() => {
+    console.log("db connected");
+})
+
+.catch((error) => {
+    console.log(error);
+})
+
+app.listen(PortNO, () => console.log(`server is up & running at ${PortNO}`));
+
+const supplierRouter = require('./routes/suppliers.routes');
+app.use('/api/supplier', supplierRouter);

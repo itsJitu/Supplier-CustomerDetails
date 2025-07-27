@@ -2,7 +2,11 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get()
+const {
+    addSupplier
+} = require("../controllers/suppliers.controllers");
+
+router.post('/add', addSupplier);
 
 
 
