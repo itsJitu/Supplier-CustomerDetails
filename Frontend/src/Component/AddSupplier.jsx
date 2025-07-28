@@ -10,6 +10,7 @@ function AddSupplier() {
 
   const [toast, setToast] = useState('');
   const [sName, setSName] = useState('');
+  const [address, setAddress] = useState('');
   const handleSubmit = async(e) => {
   e.preventDefault();
   setToast();
@@ -19,7 +20,7 @@ function AddSupplier() {
     headers: {
       'Content-Type':'application/json'
     },
-    body: JSON.stringify({ sName })
+    body: JSON.stringify({ sName, address })
   });
 
    const data = await res.json();
@@ -94,7 +95,7 @@ function AddSupplier() {
             <div>
               <span>Address</span>
               <br />
-              <input type="text"></input>
+              <input type="text" value={address} onChange={e => setAddress(e.target.value)}></input>
             </div>
           </div>
 

@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const supplierSchema = mongoose.Schema({
     sName: {
         type: String,
+    },
+    address: {
+        type: String,
     }
 });
 

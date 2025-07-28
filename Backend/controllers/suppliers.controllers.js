@@ -3,14 +3,14 @@ const supplierModel = require("../models/suppliers.models");
 
 const addSupplier = async(req, res) => {
     try {
-    const { sName } = req.body;
-    if(!sName) {
+    const { sName, address } = req.body;
+    if(!sName || !address) {
         return res.status(400).json({
             message: "All fileds are required"
         });
     }
     
-   const data = new supplierModel({ sName });
+   const data = new supplierModel({ sName, address });
    await data.save();
 
     res.status(201).json({
@@ -24,9 +24,6 @@ catch(error) {
         error: error.message
     });
 }
-}
+};
 
-const suppliersControllers = {
-    addSupplier
-}
 module.exports = { addSupplier };
