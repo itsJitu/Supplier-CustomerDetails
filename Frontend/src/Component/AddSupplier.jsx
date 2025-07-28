@@ -11,6 +11,17 @@ function AddSupplier() {
   const [toast, setToast] = useState('');
   const [sName, setSName] = useState('');
   const [address, setAddress] = useState('');
+  const [contact, setContact] = useState('');
+  const [currentStock, setCurrentStock] = useState('');
+  const [stockInTransit, setStockInTransit] = useState('');
+  const [availableStock, setAvailableStock] = useState('');
+  const [category, setCategory] = useState('');
+  const [unitPrice, setUnitPrice] = useState('');
+  const [totalInventory, setTotalInventory] = useState("");
+  const [lorem, setLorem] = useState('');
+  const [date, setDate] = useState('');
+  const [emailId, setEmailId] = useState('');
+  
   const handleSubmit = async(e) => {
   e.preventDefault();
   setToast();
@@ -20,7 +31,7 @@ function AddSupplier() {
     headers: {
       'Content-Type':'application/json'
     },
-    body: JSON.stringify({ sName, address })
+    body: JSON.stringify({ sName, address, contact, currentStock, stockInTransit, availableStock, category, unitPrice, totalInventory, lorem, date, emailId, })
   });
 
    const data = await res.json();
@@ -104,12 +115,12 @@ function AddSupplier() {
             <div>
               <span>Contact</span>
               <br />
-              <input type="text"></input>
+              <input type="text" value={contact} onChange={e => setContact(e.target.value)}></input>
             </div>
             <div>
               <span>Current Stock</span>
               <br />
-              <input type="text"></input>
+              <input type="text" value={currentStock} onChange={e => setCurrentStock(e.target.value)}></input>
             </div>
           </div>
 
@@ -118,12 +129,12 @@ function AddSupplier() {
             <div>
               <span>Stock in transit</span>
               <br />
-              <input type="text" style={{backgroundColor: "#bbc4d9ff"}}></input>
+              <input type="text" value={stockInTransit} onChange={e => setStockInTransit(e.target.value)} style={{backgroundColor: "#bbc4d9ff"}}></input>
             </div>
             <div>
               <span>Available stock</span>
               <br />
-              <input type="text" style={{backgroundColor: "#bbc4d9ff"}}></input>
+              <input type="text" value={availableStock} onChange={e => setAvailableStock(e.target.value)} style={{backgroundColor: "#bbc4d9ff"}}></input>
             </div>
           </div>
 
@@ -132,12 +143,12 @@ function AddSupplier() {
             <div>
               <span>Category</span>
               <br />
-              <input type="text"></input>
+              <input type="text" value={category} onChange={e => setCategory(e.target.value)}></input>
             </div>
             <div>
               <span>Unit Price</span>
               <br />
-              <input type="text"></input>
+              <input type="text" value={unitPrice} onChange={e => setUnitPrice(e.target.value)}></input>
             </div>
           </div>
 
@@ -146,18 +157,18 @@ function AddSupplier() {
             <div className="total-inventory-container">
               <span>Total Inventory</span>
               <br />
-              <input type="text" className="total-inventory-input" style={{backgroundColor: "#bbc4d9ff"}}></input>
+              <input type="text" value={totalInventory} onChange={e => setTotalInventory(e.target.value)}className="total-inventory-input" style={{backgroundColor: "#bbc4d9ff"}}></input>
             </div>
             <div className="lorem-wrapper">
               <div>
                 <span>Lorem</span>
                 <br />
-                <input type="text" ></input>
+                <input type="text" value={lorem} onChange={e => setLorem(e.target.value)}></input>
               </div>
               <div>
                 <span>Lorem</span>
                 <br />
-                <input type="text"></input>
+                <input type="text" value={lorem} onChange={e => setLorem(e.target.value)}></input>
               </div>
             </div>
           </div>
@@ -166,7 +177,7 @@ function AddSupplier() {
             <div className="full-width-field">
               <span>Date</span>
               <br />
-              <input type="date"></input>
+              <input type="date" value={date} onChange={e => setDate(e.target.value)}></input>
             </div>
 
             {/* Email id */}
@@ -175,7 +186,7 @@ function AddSupplier() {
                 Email id
               </span>
               <br />
-              <input type="email" />
+              <input type="email" value={emailId} onChange={e => setEmailId(e.target.value)}/>
             </div>
         </div>
         <hr />
