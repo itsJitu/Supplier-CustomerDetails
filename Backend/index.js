@@ -21,6 +21,8 @@ const corsOption = {
 };
 app.use(cors(corsOption));
 
+app.use(express.json());
+
 mongoose.connect(MONGOOSE_URL)
 .then(() => {
     console.log("db connected");
@@ -30,7 +32,7 @@ mongoose.connect(MONGOOSE_URL)
     console.log(error);
 })
 
-app.listen(PortNO, () => console.log(`server is up & running at ${PortNO}`));
-
 const supplierRouter = require('./routes/suppliers.routes');
-app.use('/api/supplier', supplierRouter);
+app.use('/api/suppliers', supplierRouter);
+
+app.listen(PortNO, () => console.log(`server is up & running at ${PortNO}`));

@@ -2,27 +2,32 @@ import "./AddSupplier.css";
 import { FaSearch } from "react-icons/fa";
 import { CiBellOn } from "react-icons/ci";
 import { FaArrowLeft } from "react-icons/fa";
+import { useState } from "react";
+
 
 function AddSupplier() {
   const backend_url = import.meta.env.VITE_BACKEND_URL;
 
   const [toast, setToast] = useState('');
+  const [sName, setSName] = useState('');
   const handleSubmit = async(e) => {
   e.preventDefault();
   setToast();
   try {
-    const res = await fetch(`${backend_url}/api/Suppliers/add`,{
+    const res = await fetch(`${backend_url}/api/suppliers/add`,{
     method: "POST",
-    header: {'Content_Type':'application/json'},
-    body: JSON.stringify({supplier:})
+    headers: {
+      'Content-Type':'application/json'
+    },
+    body: JSON.stringify({ sName })
   });
 
    const data = await res.json();
       if(res.ok){
-        setToast(data.alert);
-        setMessage('');
+        setToast(data.message);
+        setSName('');
       }else{
-        setToast(data.alert);
+        setToast(data.message);
       }
     }
     catch(error){
@@ -74,6 +79,7 @@ function AddSupplier() {
       </div>
 
       {/* Supplier Details */}
+      <form onSubmit={handleSubmit}>
       <div className="supplier-details">
         <span>Basic details</span>
 
@@ -83,7 +89,7 @@ function AddSupplier() {
             <div className="supplier-input">
               <span>Supplier Name</span>
               <br />
-              <input type="text"></input>
+              <input type="text" value={sName} onChange={e => setSName(e.target.value)}></input>
             </div>
             <div>
               <span>Address</span>
@@ -176,10 +182,13 @@ function AddSupplier() {
         {/* buttons cancel & submit */}
 
         <div className="buttons">
-          <button type="submit" style={{ backgroundColor: "white", padding: "5px", borderRadius: "4px", border: "2px solid #f5f7fa"}}>Cancel</button>
-          <button style={{backgroundColor: "#077aff", color: "white", border: "none", padding: "5px", borderRadius: "4px"}}>Submit</button>
+          <button style={{ backgroundColor: "white", padding: "5px", borderRadius: "4px", border: "2px solid #f5f7fa"}}>Cancel</button>
+          <button type="submit" style={{backgroundColor: "#077aff", color: "white", border: "none", padding: "5px", borderRadius: "4px"}}>Submit</button>
         </div>
       </div>
+      </form>
+
+      {toast && <p>{toast}</p>}
 
       
     </div> //main div
