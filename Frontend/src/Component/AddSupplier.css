@@ -1,6 +1,7 @@
 .main {
     padding: 10px 20px;
     background-color: rgb(220, 216, 210);
+    margin-bottom: 35px;
 }
 
 .supplier {
@@ -44,7 +45,6 @@
     background-color: white;
     padding: 10px 15px;
 }
-
 
 
 .name-address {

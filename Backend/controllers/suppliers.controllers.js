@@ -1,6 +1,7 @@
 const supplierModel = require("../models/suppliers.models");
 
 
+
 const addSupplier = async(req, res) => {
     try {
     const { sName, address, contact, currentStock, stockInTransit, availableStock, category, unitPrice, totalInventory, lorem, date, emailId } = req.body;
@@ -25,5 +26,13 @@ catch(error) {
     });
 }
 };
+const GetSupplier = async (req,res)=>{
+    try {
+        const Supplier = await supplierModel.find();
+        res.status(200).json( Supplier);
+    } catch (err) {
+        res.status(500).json({error : err.message})
+    }
+};
 
-module.exports = { addSupplier };
+module.exports = { addSupplier ,GetSupplier};
