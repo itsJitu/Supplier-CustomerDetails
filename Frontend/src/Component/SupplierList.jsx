@@ -1,91 +1,27 @@
-import React, { useState } from "react";
+
 import "./SupplierList.css";
 import { IoManSharp } from "react-icons/io5";
 import { FiDownload } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
 import { IoFilter } from "react-icons/io5";
+import ReactPaginate from 'react-paginate';
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import dayjs from "dayjs";
+import { useEffect, useState } from "react";
+import * as XLSX from "xlsx";
 
-// const supplierData = [
-//   {
-//     id: 1,
-//     name: "Ramesh Traders",
-//     contact: "9876543210",
-//     product: "Iron Rod",
-//     category: "Construction",
-//     price: "₹1200",
-//     type: "Supplier",
-//   },
-//   {
-//     id: 2,
-//     name: "SteelWorks Ltd.",
-//     contact: "9123456780",
-//     product: "Steel Sheet",
-//     category: "Raw Material",
-//     price: "₹500",
-//     type: "Manufacturer",
-//   },
-//   {
-//     id: 3,
-//     name: "Cement House",
-//     contact: "9988776655",
-//     product: "Cement",
-//     category: "Construction",
-//     price: "₹350",
-//     type: "Supplier",
-//   },
-// ];
 
-// const downloadCSV = () => {
-//   try {
-//     const headers = [
-//       "S.no",
-//       "Party/Supplier",
-//       "Contact Number",
-//       "Product",
-//       "Product Category",
-//       "Unit Price",
-//       "Supplier/Manufacturer",
-//     ];
-
-//     const rows = supplierData.map((row, index) => [
-//       index + 1,
-//       `"${row.name.replace(/"/g, '""')}"`,
-//       row.contact,
-//       `"${row.product.replace(/"/g, '""')}"`,
-//       `"${row.category.replace(/"/g, '""')}"`,
-//       `"${row.price.replace(/"/g, '""')}"`,
-//       `"${row.type.replace(/"/g, '""')}"`,
-//     ]);
-
-//     let csvContent =
-//       "data:text/csv;charset=utf-8," +
-//       headers.join(",") +
-//       "\n" +
-//       rows.map((e) => e.join(",")).join("\n");
-
-//     const encodedUri = encodeURI(csvContent);
-//     const link = document.createElement("a");
-//     link.setAttribute("href", encodedUri);
-//     link.setAttribute("download", "suppliers.csv");
-//     document.body.appendChild(link);
-//     link.click();
-//     document.body.removeChild(link);
-//   } catch (error) {
-//     console.error("Download failed:", error);
-//   }
-// };
 
 function SupplierList() {
   const [supplierData, setsupplierData] = useState([]);
+  const [Error, setError] = useState(null);
 
   useEffect(() => {
     const fetchSupplierData = async () => {
       try {
         const response = await fetch("http://localhost:8080/api/suppliers/");
         if (!response.ok) {
-          throw new Error("Failed to fetch giftcard data");
+          throw new Error("Failed to fetch Supplier data");
         }
         const data = await response.json();
         console.log(data);
@@ -96,11 +32,47 @@ function SupplierList() {
         setsupplierData(updatedData);
       } catch (err) {
         setError(err.message);
+        console.log(err.message);
       }
     };
 
     fetchSupplierData();
   }, []);
+
+  const downloadXLSX = () => {
+    const Headers = [
+      ["S.no", "Party/Supplier", "Contact Number", "Date", "Product Category", "Unit Price", "Supplier/Manufacturer"]
+    ];
+    const rows = supplierData.map((row, index) => [
+      index + 1,
+      row.address || "",
+      row.contact || "",
+      new Date(row.date).toLocaleDateString("en-IN") || "",
+      row.Category || "",
+      row.unitPrice || "",
+      row.sName || ""
+    ]);
+
+    const worksheetData = [...Headers, ...rows];
+    const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+    const WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(WorkBook, worksheet, "Suppliers");
+
+    XLSX.writeFile(WorkBook, "suppliers.xlsx");
+  }
+
+  {/* pagination Logic */}
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 1;
+
+  const offset = currentPage * itemsPerPage;
+  const currentItems = supplierData.slice(offset, offset+ itemsPerPage);
+  const pageCount = Math.ceil(supplierData.length / itemsPerPage);
+
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  }
 
   return (
     <div className="list-page">
@@ -117,7 +89,7 @@ function SupplierList() {
           </div>
 
           <div className="list-btn">
-            <button className="download-btn">
+            <button className="download-btn" onClick={downloadXLSX}>
               <FiDownload /> <span>Download CSV </span>
             </button>
             <Link to="/AddSupplier" className="add-btn">
@@ -153,16 +125,16 @@ function SupplierList() {
               </tr>
             </thead>
             <tbody>
-              {supplierData.map((row, idx) => (
+              {currentItems.map((row, idx) => (
                 <tr key={row.id}>
-                  {/* <td>{startIdx + idx + 1}</td> */}
-                  <td>{row.stockInTransit}</td>
+                  <td>{offset + idx + 1}</td>
+                  {/* <td>{idx + 1}</td> */}
                   <td>{row.address}</td>
                   <td>{row.contact}</td>
-                  <td>{row.product}</td>
+                  <td>{dayjs(row.date).format("YYYY-MM-DD")}</td>
                   <td>{row.category}</td>
-                  <td>{row.price}</td>
-                  <td>{row.type}</td>
+                  <td>{row.unitPrice}</td>
+                  <td>{row.sName}</td>
                   <td>
                     <button>Edit</button>
                     <button>Delete</button>
@@ -174,111 +146,23 @@ function SupplierList() {
         </div>
 
         {/* pagination */}
-        {/* <div className="pagination-bar">
-          <button
-            className="pagination-btn prev"
-           
-          >
-            Previous
-          </button>
-          <div className="pagination-pages">
-           
-            <button
-              
-            >
-              1
-            </button>
-          
-            {totalPages > 1 && (
-              <button
-                
-              >
-                2
-              </button>
-            )}
-            If on page 1, 2, 3: show 3rd page, then ellipsis
-            {currentPage <= 3 && totalPages > 3 && (
-              <>
-                <button
-                  className={`pagination-page${
-                    currentPage === 3 ? " active" : ""
-                  }`}
-                  onClick={() => goToPage(3)}
-                >
-                  3
-                </button>
-                {totalPages > 5 && (
-                  <span className="pagination-ellipsis">...</span>
-                )}
-              </>
-            )}
-           
-              currentPage < totalPages - 2 &&
-              totalPages > 5 && (
-                <>
-                  <span className="pagination-ellipsis">...</span>
-                  <button
-                    className="pagination-page"
-                    onClick={() => goToPage(currentPage - 1)}
-                  >
-                    {currentPage - 1}
-                  </button>
-                  <button
-                    className="pagination-page active"
-                    onClick={() => goToPage(currentPage)}
-                  >
-                    {currentPage}
-                  </button>
-                  <button
-                    className="pagination-page"
-                    onClick={() => goToPage(currentPage + 1)}
-                  >
-                    {currentPage + 1}
-                  </button>
-                  <span className="pagination-ellipsis">...</span>
-                </>
-              )}
-           
-            {currentPage >= totalPages - 2 && totalPages > 5 && (
-              <>
-                <span className="pagination-ellipsis">...</span>
-                {totalPages - 2 > 2 && (
-                  <button
-                    className={`pagination-page${
-                      currentPage === totalPages - 2 ? " active" : ""
-                    }`}
-                    onClick={() => goToPage(totalPages - 2)}
-                  >
-                    {totalPages - 2}
-                  </button>
-                )}
-              </>
-            )}
-           
-            {totalPages > 2 &&
-              [totalPages - 1, totalPages].map(
-                (page) =>
-                  page > 2 && (
-                    <button
-                      key={page}
-                      className={`pagination-page${
-                        currentPage === page ? " active" : ""
-                      }`}
-                      onClick={() => goToPage(page)}
-                    >
-                      {page}
-                    </button>
-                  )
-              )}
-          </div>
-          <button
-            className="pagination-btn next"
-            onClick={() => goToPage(currentPage + 1)}
-            disabled={currentPage === totalPages}
-          >
-            Next
-          </button>
-        </div> */}
+
+        <ReactPaginate 
+        previousLabel={"Previous"}
+        nextLabel={"Next"}
+        breakLabel={"..."}
+        pageCount={pageCount}
+        marginPagesDisplayed={3}
+        pageRangeDisplayed={3}
+        onPageChange={handlePageClick}
+        containerClassName={"pagination"}
+        activeClassName={"active"}
+        previousClassName={"page-label"}
+        nextClassName={"page-label"}
+        pageClassName={"page-number"}
+        breakClassName={"break"}
+        />
+        
       </div>
     </div>
   );

@@ -75,12 +75,12 @@ function AddSupplier() {
             <FaSearch
               style={{
                 backgroundColor: "#007aff",
-                padding: "5px",
+                padding: "10px",
                 color: "white",
               }}
             />
           </div>
-          <CiBellOn style={{ backgroundColor: "white", padding: "5px" }} />
+          <CiBellOn style={{ backgroundColor: "white", padding: "10px" }} />
         </div>
       </div>
 

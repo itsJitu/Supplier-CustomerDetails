@@ -33,6 +33,7 @@ const supplierSchema = mongoose.Schema({
     },
     date : {
         type: Date,
+        default: Date.now,
     },
     emailId: {
         type: String,
