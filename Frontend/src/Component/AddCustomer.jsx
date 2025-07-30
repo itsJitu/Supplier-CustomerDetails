@@ -15,7 +15,7 @@ function AddCustomer() {
     customerType: "",
     billingAddress: "",
     shippingAddress: "",
-    customerId: "",
+    code: "",
     paymentTerm: "",
     paymentMethod: "",
     productCategory: "",
@@ -56,7 +56,7 @@ function AddCustomer() {
           customerType: "",
           billingAddress: "",
           shippingAddress: "",
-          customerId: "",
+          code: "",
           paymentTerm: "",
           paymentMethod: "",
           productCategory: "",
@@ -199,9 +199,9 @@ function AddCustomer() {
               <div className="customer-input">
                 <span>Customer Code/ID (Auto-Generated or Manual)</span>
                 <input
-                  type="number"
-                  name="customerId"
-                  value={formData.customerId}
+                  // type="String"
+                  name="code"
+                  value={formData.code}
                   onChange={handleChange}
                 />
               </div>

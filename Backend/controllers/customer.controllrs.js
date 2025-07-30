@@ -57,9 +57,9 @@ const addCustomer = async (req, res) => {
   //   res.status(500).json({ error: error.message });
   // }
   try {
-    const newGiftCard = new CustomerModel(req.body);
-    await newGiftCard.save();
-    res.status(201).json(newGiftCard);
+    const newCustomerModel = new CustomerModel(req.body);
+    await newCustomerModel.save();
+    res.status(201).json(newCustomerModel);
   } catch (err) {
     res.status(400).json({ Error: err.message });
   }

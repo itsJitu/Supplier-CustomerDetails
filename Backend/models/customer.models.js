@@ -20,7 +20,7 @@ const customerSchema = mongoose.Schema({
     type: String,
   },
   code: {
-    type: Number,
+    type: String,
   },
   paymentTerm: {
     type: String,

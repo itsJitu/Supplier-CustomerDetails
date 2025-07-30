@@ -38,23 +38,23 @@ function CustomerList() {
   const downloadXLSX = () => {
     const Headers = [
       [
-        "S.no",
-        "Party/Supplier",
+        "S.No",
+        "Customer Name",
         "Contact Number",
-        "Date",
+        "Email",
+        "Billing Address",
+        "Customer ID",
         "Product Category",
-        "Unit Price",
-        "Supplier/Manufacturer",
       ],
     ];
     const rows = customerData.map((row, index) => [
       index + 1,
-      row.address || "",
-      row.contact || "",
-      new Date(row.date).toLocaleDateString("en-IN") || "",
-      row.Category || "",
-      row.unitPrice || "",
-      row.sName || "",
+      row.name || "",
+      row.phone || "",
+      row.email || "",
+      row.billingAddress || "",
+      row.code || "",
+      row.productCategory || "",
     ]);
 
     const worksheetData = [...Headers, ...rows];
@@ -70,7 +70,7 @@ function CustomerList() {
   }
 
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 1;
+  const itemsPerPage = 3;
 
   const offset = currentPage * itemsPerPage;
   const currentItems = customerData.slice(offset, offset + itemsPerPage);
@@ -138,8 +138,8 @@ function CustomerList() {
                   <td>{row.phone}</td>
                   <td>{row.email}</td>
                   <td>{row.billingAddress}</td>
-                  <td>{row.shipping}</td>
                   <td>{row.code}</td>
+                  <td>{row.productCategory}</td>
                   <td>
                     <button>Edit</button>
                     <button>Delete</button>
@@ -157,7 +157,7 @@ function CustomerList() {
           nextLabel={"Next"}
           breakLabel={"..."}
           pageCount={pageCount}
-          marginPagesDisplayed={3}
+          marginPagesDisplayed={5}
           pageRangeDisplayed={3}
           onPageChange={handlePageClick}
           containerClassName={"pagination"}
