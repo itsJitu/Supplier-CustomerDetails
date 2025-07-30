@@ -64,7 +64,7 @@ function SupplierList() {
   {/* pagination Logic */}
 
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 1;
+  const itemsPerPage = 2;
 
   const offset = currentPage * itemsPerPage;
   const currentItems = supplierData.slice(offset, offset+ itemsPerPage);

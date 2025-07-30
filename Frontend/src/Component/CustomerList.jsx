@@ -140,7 +140,7 @@ function CustomerList() {
                   <td>{row.billingAddress}</td>
                   <td>{row.code}</td>
                   <td>{row.productCategory}</td>
-                  <td>
+                  <td style={{disply: "flex", justifyContent: "space-between"}}>
                     <button>Edit</button>
                     <button>Delete</button>
                   </td>
