@@ -68,7 +68,7 @@ function Supplier() {
 
         <div className="three-button">
           <button className="details">Details</button>
-          <button className="active">Active Orders</button>
+          <button className="activeO">Active Orders</button>
           <button className="products">Products</button>
         </div>
 
